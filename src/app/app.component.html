@@ -1,34 +1,29 @@
-<mat-sidenav-container [class.m2app-dark]="isDarkTheme">
+<div class="barcode-box">
 
-  <mat-sidenav #sidenav mode="side">
-    <div class="flex-container" fxLayout="column">
-      <button class="flex-item" mat-button [routerLinkActive]="['active']" [routerLink]="['barcode']">Homepage
-      </button>
-      <div class="flex-item">
-        <hr>
-      </div>
-      <button class="flex-item" mat-button [routerLinkActive]="['active']" [routerLink]="['barcode/media']">Media Stream
-      </button>
-      <div class="flex-item">
-        <hr>
-      </div>
-      <button class="flex-item" mat-button [routerLinkActive]="['active']" [routerLink]="['barcode/field']">Input File
-      </button>
-    </div>
-  </mat-sidenav>
-  <mat-toolbar color="primary">
-
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button>
-    {{title}}
-    <span class="app-toolbar-filler"></span>
-    {{fork}}
-
-  </mat-toolbar>
-
-  <div class="app-content">
-    <router-outlet></router-outlet>
+  <div class="barcode-item">
+    <input matInput #isbn maxlength="256" type="text" placeholder="Barcode Number" [ngClass]="'barcode-txt'">
+    <button (click)="onClick()" mat-fab><mat-icon>file_upload</mat-icon></button>
+    <input type="file" class="cameraInput" accept="image/*" capture="camera" #fileInputbox (cancel)="onCancel($event)"
+           (change)="onChange($event)"
+           [ngClass]="['none']">
   </div>
-</mat-sidenav-container>
-<app-fab-menu [isDarkTheme]="isDarkTheme"></app-fab-menu>
+
+  <div class="barcode-item">
+
+    <mat-progress-bar *ngIf="startProgress"
+                      class="app-progress flex-item"
+                      mode="indeterminate"
+                      aria-label="Indeterminate progress-bar example"></mat-progress-bar>
+
+    <div class="barcode-result">
+      <div class="small-img">
+        <img [src]="resultUrl" *ngIf="resultUrl">
+      </div>
+      {{resultCode}}
+      {{error}}
+      {{message}}
+    </div>
+
+  </div>
+
+</div>

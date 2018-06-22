@@ -1,0 +1,50 @@
+
+.none {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.barcode-box{
+  position: relative;
+  display: block;
+  width: 90%;
+  height: auto;
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.barcode-item {
+  display: block;
+  width: 100%;
+}
+
+.barcode-txt{
+  display: block;
+  padding: 15px 20px;
+  margin: 20px 0;
+  width: 100%;
+  -webkit-appearance: none;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.small-img {
+  display: block;
+  max-width: inherit;
+  width: 100%;
+  height: 180px;
+  padding: 10px 0;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+}
+.small-img img {
+  display: block;
+  height: 160px;
+  width: auto;
+  margin: 0 auto;
+}

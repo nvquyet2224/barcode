@@ -110,7 +110,7 @@ export class BarcodeDecoderService {
 
   onDecodeStop() {
     Quagga.stop();
-    console.info('Camera Stopped Working!');
+    console.log('Camera Stopped Working!');
   }
 
   onPlaySound() {

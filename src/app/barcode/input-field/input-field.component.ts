@@ -78,6 +78,6 @@ export class InputFieldComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.info('Stopped!');
+    console.log('Stopped!');
   }
 }
