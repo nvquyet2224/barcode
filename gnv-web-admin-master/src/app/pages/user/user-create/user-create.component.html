@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">Users Create</div>
+  </div>
+</div>
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <div *ngIf="message" class="{{ message.bgmgs }}">{{message.text}}</div>
+        </div>
+        <div class="card-body">
+          <div class="col-12 col-sm-12 d-flex align-items-center">
+            <div class="card-block mx-auto">
+              <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icon-user"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="fname" id="fname" placeholder="Username" ngModel required >
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="ft-mail"></i>
+                    </span>
+                  </div>
+                  <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email" ngModel required email >
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="ft-lock"></i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Password" ngModel required >
+                </div>
+                <div class="input-group mb-3">
+                  <label class="col-sm-12" for="selectRole">Roles</label>
+                  <select id="selectRole" name="selectRole" class="form-control" ngModel>
+                    <option *ngFor="let role of roles" value="{{ role.id }}" > {{ role.name }}</option>
+                  </select>
+                </div>
+                <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+                <div class="form-group text-left">
+                  <button type="submit" class="btn btn-warning btn-raised" [disabled]="!f.valid">Create User</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

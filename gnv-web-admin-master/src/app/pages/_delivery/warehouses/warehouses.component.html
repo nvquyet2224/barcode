@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">Users Tables</div>
+  </div>
+</div>
+<section>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <a class="btn btn-raised btn-success btn-min-width mr-1 mb-1" data-original-title="" title="Create Warehouse" routerLink="/warehouse/create">
+            <i class="ft-user"></i> Create User
+          </a>
+          <div *ngIf="message" class="{{ message.bgmgs }}">{{message.text}}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <!--<table class="table table-responsive-md text-center">-->
+              <!--<thead>-->
+              <!--<tr>-->
+                <!--<th>ID</th>-->
+                <!--<th>User Name</th>-->
+                <!--<th>Email</th>-->
+                <!--<th>Role</th>-->
+                <!--<th>Status</th>-->
+                <!--<th>Actions</th>-->
+              <!--</tr>-->
+              <!--</thead>-->
+              <!--<tbody>-->
+              <!--<tr *ngFor="let user of listeners">-->
+                <!--<td>{{ user.id }}</td>-->
+                <!--<td>{{ user.username }}</td>-->
+                <!--<td>{{ user.email }}</td>-->
+                <!--<td>{{ user.role }}</td>-->
+                <!--<td>{{ user.status }}</td>-->
+                <!--<td>-->
+                  <!--<a class="info p-0" data-original-title="" title="Detail User" routerLink="/user/detail/{{user.id}}">-->
+                    <!--<i class="ft-user font-medium-3 mr-2"></i>-->
+                  <!--</a>-->
+                  <!--<a class="success p-0" data-original-title="" title="Edit User" routerLink="/user/detail/{{user.id}}">-->
+                    <!--<i class="ft-edit-2 font-medium-3 mr-2"></i>-->
+                  <!--</a>-->
+                  <!--<a class="danger p-0" data-original-title="" title="Remove User"-->
+                     <!--(click)="delete(user)">-->
+                    <!--<i class="ft-x font-medium-3 mr-2"></i>-->
+                  <!--</a>-->
+                <!--</td>-->
+              <!--</tr>-->
+              <!--</tbody>-->
+            <!--</table>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

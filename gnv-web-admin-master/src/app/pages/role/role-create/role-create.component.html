@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-12">
+    <div class="content-header">Create Role</div>
+  </div>
+</div>
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+          <div class="col-12 col-sm-12 col-md-6 d-flex align-items-center">
+            <div class="card-block mx-auto">
+              <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icon-user"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="fname" id="fname" placeholder="Name" ngModel required >
+                </div>
+                <div class="form-group text-left">
+                  <button type="submit" class="btn btn-success btn-raised" [disabled]="!f.valid">Create Role</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

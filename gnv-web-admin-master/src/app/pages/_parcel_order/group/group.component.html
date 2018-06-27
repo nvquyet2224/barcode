@@ -1,0 +1,132 @@
+<div class="row match-height">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip"><span class="fa fa-search"></span> Tìm kiếm đơn hàng</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <!-- Người gửi-->
+                <div class="col-md-12 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-parcels badge-default mt-3 p-2 mb-3 font-small-3">Thông tin</div>
+                    <div class="form-group row mb-1">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label for="groupBy" class="col-xl-3 col-sm-5 col-form-label font-small">Group by :</label>
+                          <div class="col-xl-9 col-sm-7">
+                            <div class="md-form mt-0">
+                              <select2 [data]="group2Data" (valueChanged)="changedGroupBy($event)"></select2>
+                              <input type="hidden" class="form-control"  id="groupBy" [ngModel]="selectedGroupBy" name="groupBy">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label for="fromTime" class="col-xl-3 col-sm-5 col-form-label font-small">Từ Ngày</label>
+                          <div class="col-xl-9 col-sm-7">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="md-form mt-0">
+                                  <input id="fromTime" type="text" class="form-control" [owlDateTimeTrigger]="fromTime" [owlDateTime]="fromTime"
+                                         name="fromTime" ngModel>
+                                  <owl-date-time #fromTime></owl-date-time>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label for="toTime" class="col-xl-3 col-sm-5 col-form-label font-small">Đến Ngày</label>
+                          <div class="col-xl-9 col-sm-7">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="md-form mt-0">
+                                  <input id="toTime" type="text" class="form-control" [owlDateTimeTrigger]="toTime" [owlDateTime]="toTime"
+                                         name="toTime" ngModel>
+                                  <owl-date-time #toTime></owl-date-time>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label for="locaSend" class="col-xl-3 col-sm-5 col-form-label font-small">KV lấy hàng</label>
+                          <div class="col-xl-9 col-sm-7">
+                            <div class="md-form mt-0">
+                              <select2 [data]="send2Data" (valueChanged)="changedSend($event)"></select2>
+                              <input type="hidden" class="form-control"  id="locaSend" [ngModel]="selectedSend" name="locaSend" ngModel>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <label for="locaReceiver" class="col-xl-3 col-sm-5 col-form-label font-small">KV giao hàng</label>
+                          <div class="col-xl-9 col-sm-7">
+                            <div class="md-form mt-0">
+                              <select2 [data]="receiver2Data" (valueChanged)="changedReceiver($event)"></select2>
+                              <input type="hidden" class="form-control" id="locaReceiver" name="locaReceiver" [ngModel]="selectedReceiver">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions text-center">
+              <button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-search"></i> Tìm kiếm</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row match-height" *ngIf="dataGroup">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="px-3 pt-3">
+          <!--Table-->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sender</th>
+                <th>Expected Pickup</th>
+                <th>Receiver</th>
+                <th>Expected Delivery</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of dataGroup; let i = index">
+                <th scope="row">{{ i }}</th>
+                <td>{{ data.sender }}</td>
+                <td>{{ data.expected_pickup_from }} ~ {{ data.expected_pickup_from }}</td>
+                <td>{{ data.receiver }}</td>
+                <td>{{ data.expected_delivery_from }} ~ {{ data.expected_delivery_to }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--Table-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

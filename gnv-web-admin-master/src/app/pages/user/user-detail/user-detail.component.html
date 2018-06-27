@@ -1,0 +1,49 @@
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="content-header">Users Edit</div>
+        </div>
+        <div class="card-body" *ngIf="detailuser">
+          <!--<form novalidate="" (ngSubmit)="onSubmit()" #f="ngForm">-->
+            <div class="card-block">
+              <fieldset class="form-group">
+                <label for="inputUserName">User Name</label>
+                <input type="text" class="form-control" id="inputUserName" [(ngModel)]="detailuser.username" placeholder="User Name">
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="inputEmail" [(ngModel)]="detailuser.email" placeholder="Email">
+              </fieldset>
+              <fieldset class="form-group" >
+                <label for="selectRole">Roles</label>
+                <select id="selectRole" name="selectRole" class="form-control" [(ngModel)]="detailuser.role_id">
+                  <option *ngFor="let role of roles" value="{{ role.id }}" [selected]="detailuser.role_id == role.id"> {{ role.name }}</option>
+                </select>
+              </fieldset>
+              <div>
+                <button type="button" (click)="save(detailuser.id)" class="btn btn-raised btn-info btn-min-width mr-1 mb-1">Update User</button>
+                <button type="button" (click)="delete(user)" class="btn btn-raised btn-danger btn-min-width mr-1 mb-1">Remove User</button>
+              </div>
+            </div>
+          <!--</form>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="content-header">Users Detail</div>
+        </div>
+        <div class="card-body" *ngIf="detailuser">
+          <div class="card-block">
+            <h2>{{ detailuser.username }}</h2>
+            <p>{{ detailuser.email }}</p>
+            <p>{{ detailuser.role }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

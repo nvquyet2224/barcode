@@ -1,0 +1,72 @@
+<div class="row match-height">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Create Warehouse</h4>
+        <p class="mb-0">This form shows tooltips on hover to provide useful information while user is filling the form. Use data attributes like toggle <code>data-toggle</code>, trigger <code>data-trigger</code>, placement <code>data-placement</code>, title <code>data-title</code> to show tooltips on form controls.</p>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" id="inputName" class="form-control"  name="inputName" ngModel>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputMining">Mining Text</label>
+                    <input type="text" id="inputMining" class="form-control"  name="inputMining" ngModel>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputPhone">Phone</label>
+                    <input type="text" id="inputPhone" class="form-control"  name="inputPhone" ngModel>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" id="inputAddress" class="form-control"  name="inputAddress" ngModel>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <label>Status</label>
+                  <div class="clear"></div>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio display-inline-block ml-1">
+                      <input type="radio" id="radioStatus1" name="radioStatus" class="custom-control-input"  value="1"  ngModel>
+                      <label class="custom-control-label" for="radioStatus1">Active</label>
+                    </div>
+
+                    <div class="custom-control custom-radio display-inline-block">
+                      <input type="radio" id="radioStatus2"  name="radioStatus" class="custom-control-input"  value="0" [checked]="isChecked"  ngModel >
+                      <label class="custom-control-label" for="radioStatus2">Unactive</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <select2 [data]="select2Data" (valueChanged)="changed($event)"></select2>
+                <input type="hidden" class="form-control"  name="inputLocation" [ngModel]="selected" ngModel>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-check-square-o"></i> Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

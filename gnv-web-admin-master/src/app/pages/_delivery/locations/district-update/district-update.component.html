@@ -1,0 +1,47 @@
+<div class="row match-height" *ngIf="districts">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Update District "{{districts.name}}"</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputProvince">Province</label>
+                    <input type="text" id="inputProvince" class="form-control"  name="inputProvince" [(ngModel)]="districts.name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputMining">Mining</label>
+                    <input type="text" id="inputMining" class="form-control"  name="inputMining" [(ngModel)]="districts.mining_text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputDistricts">Districts</label>
+                    <div class="clear"></div>
+                    <select2 [data]="select2Data" [value]="startValue" (valueChanged)="changed($event)"></select2>
+                    <input type="text" class="form-control" id="inputDistricts"  name="inputDistricts" [ngModel]="selected" ngModel>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="button" (click)="save(districts.id)" class="btn btn-raised btn-primary">Update District</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
