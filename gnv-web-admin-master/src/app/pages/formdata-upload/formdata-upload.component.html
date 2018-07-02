@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="path">Avatar</label>
+    <input type="file" id="path" (change)="onFileChange($event)" #fileInput>
+  </div>
+  <button type="submit" [disabled]="loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+</form>

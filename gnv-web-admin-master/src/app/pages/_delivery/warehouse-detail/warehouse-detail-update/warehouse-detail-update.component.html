@@ -1,0 +1,81 @@
+<div class="row match-height" *ngIf="warehousedetail">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Update Warehouse "{{warehousedetail.rack + '-' + warehousedetail.bay + '-' + warehousedetail.level + '-' + warehousedetail.position}}"</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputWarehouse">Warehouse</label>
+                    <select2 [data]="select2Data" [value]="warehousedetail.warehouse_id" (valueChanged)="changed($event)"></select2>
+                    <input type="hidden" id="inputWarehouse" class="form-control"  name="inputWarehouse" [(ngModel)]="selected">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputRack">Rack </label>
+                    <input type="text" id="inputRack" class="form-control"  name="inputinputRack" [(ngModel)]="warehousedetail.rack">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputBay">Bay</label>
+                    <input type="text" id="inputBay" class="form-control"  name="inputBay" [(ngModel)]="warehousedetail.bay">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputLevel">Level</label>
+                    <input type="text" id="inputLevel" class="form-control"  name="inputLevel" [(ngModel)]="warehousedetail.level">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputPosition">Position</label>
+                    <input type="text" id="inputPosition" class="form-control"  name="inputPosition" [(ngModel)]="warehousedetail.position">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputDescription">Description</label>
+                    <textarea id="inputDescription" class="form-control"  name="inputDescription" ngModel rows="5" [(ngModel)]="warehousedetail.description"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <label>Status {{warehousedetail.status}} {{isChecked}}</label>
+                  <div class="clear"></div>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio display-inline-block ml-1">
+                      <input type="radio" id="radioStatus1" name="radioStatus" class="custom-control-input"  value="1"  [(ngModel)]="warehousedetail.status" >
+                      <label class="custom-control-label" for="radioStatus1">Active</label>
+                    </div>
+
+                    <div class="custom-control custom-radio display-inline-block">
+                      <input type="radio" id="radioStatus2"  name="radioStatus" class="custom-control-input"  value="0" checked="{{isChecked}}" [(ngModel)]="warehousedetail.status" >
+                      <label class="custom-control-label" for="radioStatus2">Unactive</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="button" (click)="save(warehousedetail.id)" class="btn btn-raised btn-primary">Update User</button>
+              <!--<button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-check-square-o"></i> Save</button>-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

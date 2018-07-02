@@ -1,0 +1,37 @@
+<div class="row match-height" *ngIf="province">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Update Provice "{{province.name}}"</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputProvince">Province</label>
+                    <input type="text" id="inputProvince" class="form-control"  name="inputProvince" [(ngModel)]="province.name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputMining">Mining</label>
+                    <input type="text" id="inputMining" class="form-control"  name="inputMining" [(ngModel)]="province.mining_text">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="button" (click)="save(province.id)" class="btn btn-raised btn-primary">Update Province</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

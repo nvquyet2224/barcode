@@ -1,0 +1,47 @@
+<div class="row match-height">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Create District</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputDistrict">District</label>
+                    <input type="text" id="inputDistrict" class="form-control"  name="inputDistrict" ngModel>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputMining">Mining</label>
+                    <input type="text" id="inputMining" class="form-control"  name="inputMining" ngModel>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputProvinces">Provinces</label>
+                    <div class="clear"></div>
+                    <select2 [data]="select2Data" (valueChanged)="changed($event)"></select2>
+                    <input type="hidden" class="form-control" id="inputProvinces"  name="inputProvinces" [ngModel]="selected" ngModel>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-check-square-o"></i> Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

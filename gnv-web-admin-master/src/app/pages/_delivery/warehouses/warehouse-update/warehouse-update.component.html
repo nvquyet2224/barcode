@@ -1,0 +1,73 @@
+<div class="row match-height" *ngIf="warehouse">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip">Update Warehouse "{{warehouse.name}}"</h4>
+
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputName">Name </label>
+                    <input type="text" id="inputName" class="form-control"  name="inputName" [(ngModel)]="warehouse.name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputMining">Mining Text</label>
+                    <input type="text" id="inputMining" class="form-control"  name="inputMining" [(ngModel)]="warehouse.mining_text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputPhone">Phone</label>
+                    <input type="text" id="inputPhone" class="form-control"  name="inputPhone" [(ngModel)]="warehouse.phone">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" id="inputAddress" class="form-control"  name="inputAddress" [(ngModel)]="warehouse.address">
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <label>Status {{warehouse.status}} {{isChecked}}</label>
+                  <div class="clear"></div>
+                  <div class="form-group">
+                    <div class="custom-control custom-radio display-inline-block ml-1">
+                      <input type="radio" id="radioStatus1" name="radioStatus" class="custom-control-input"  value="1"  [(ngModel)]="warehouse.status" >
+                      <label class="custom-control-label" for="radioStatus1">Active</label>
+                    </div>
+
+                    <div class="custom-control custom-radio display-inline-block">
+                      <input type="radio" id="radioStatus2"  name="radioStatus" class="custom-control-input"  value="0" checked="{{isChecked}}" [(ngModel)]="warehouse.status" >
+                      <label class="custom-control-label" for="radioStatus2">Unactive</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <select2 [data]="select2Data" [value]="warehouse.location_id" (valueChanged)="changed($event)"></select2>
+                <input type="hidden" id="inputLocation" class="form-control"  name="inputLocation" [(ngModel)]="selected">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="button" (click)="save(warehouse.id)" class="btn btn-raised btn-primary">Update User</button>
+              <!--<button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-check-square-o"></i> Save</button>-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

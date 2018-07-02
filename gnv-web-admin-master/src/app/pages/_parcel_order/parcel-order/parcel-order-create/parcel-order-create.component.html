@@ -1,0 +1,269 @@
+<div class="row match-height">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-tooltip"><span class="fa fa-send-o"></span> Nhập thông tin đơn hàng</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-body">
+              <div class="row">
+                <!-- Người gửi-->
+                <div class="col-md-6 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-parcels badge-default mt-3 p-2 mb-2 font-small-3">Người gửi</div>
+                    <div class="form-group row mb-1">
+                      <label for="phoneSend" class="col-xl-3 col-sm-5 col-form-label font-small">Số điện thoại:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="phoneSend" class="form-control font-small" placeholder="Số điện thoại" name="phoneSend" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="nameSend" class="col-xl-3 col-sm-5 col-form-label font-small">Họ và tên:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="nameSend" class="form-control font-small" placeholder="Họ và tên" name="nameSend" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="addressSend" class="col-xl-3 col-sm-5 col-form-label font-small">Địa chỉ:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="addressSend" class="form-control font-small" placeholder="Địa chỉ" name="addressSend" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="locaSend" class="col-xl-3 col-sm-5 col-form-label font-small">Khu vực:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <select2 [data]="send2Data" (valueChanged)="changedSend($event)"></select2>
+                          <input type="hidden" class="form-control"  id="locaSend" [ngModel]="selectedSend" name="locaSend" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="timePickup" class="col-xl-3 col-sm-5 col-form-label font-small">Thời gian lấy hàng</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="md-form mt-0">
+                              <input id="timePickup" type="text" class="form-control" [owlDateTimeTrigger]="timePickup" [owlDateTime]="timePickup"
+                                     [selectMode]="'range'" name="timePickup" ngModel>
+                              <owl-date-time #timePickup></owl-date-time>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Người nhận -->
+                <div class="col-md-6 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-parcels badge-info mt-3 p-2 mb-2 font-small-3">Người nhận</div>
+                    <div class="form-group row mb-1">
+                      <label for="phoneReceiver" class="col-xl-3 col-sm-5 col-form-label font-small">Số điện thoại:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="phoneReceiver" class="form-control font-small " placeholder="Số điện thoại" name="phoneReceiver" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="nameReceiver" class="col-xl-3 col-sm-5 col-form-label font-small">Họ và tên:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="nameReceiver" class="form-control font-small" placeholder="Họ và tên" name="nameReceiver" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="addressReceiver" class="col-xl-3 col-sm-5 col-form-label font-small">Địa chỉ:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <input type="text" id="addressReceiver" class="form-control font-small" placeholder="Địa chỉ" name="addressReceiver" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="locaReceiver" class="col-xl-3 col-sm-5 col-form-label font-small">Khu vực:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <select2 [data]="receiver2Data" (valueChanged)="changedReceiver($event)"></select2>
+                          <input type="hidden" (change)="calculateFee($event)" class="form-control" id="locaReceiver" name="locaReceiver" [ngModel]="selectedReceiver">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="timePickup" class="col-xl-3 col-sm-5 col-form-label font-small">Thời gian giao hàng</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="md-form mt-0">
+                              <input id="timeDelivery" type="text" class="form-control" [owlDateTimeTrigger]="timeDelivery" [owlDateTime]="timeDelivery"
+                                     [selectMode]="'range'" name="timeDelivery" ngModel>
+                              <owl-date-time #timeDelivery></owl-date-time>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Gói hàng -->
+                <div class="col-md-6 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-parcels badge-primary mt-3 p-2 mb-2 font-small-3">Gói hàng</div>
+                    <div class="form-group row mb-1">
+                      <label for="dataType" class="col-xl-3 col-sm-5 col-form-label font-small">Kiểu hàng:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <select2 [data]="type2Data" (valueChanged)="changeType($event)"></select2>
+                          <input type="hidden" class="form-control" id="dataType"  name="dataType" [ngModel]="selectedType">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="textWeight" class="col-xl-3 col-sm-5 col-form-label font-small">Khối lượng:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form input-group mt-0">
+                          <input (change)="calculateFee($event)" type="number" value="0" id="textWeight" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="Khối lượng" name="textWeight" ngModel>
+                          <div class="input-group-prepend">
+                            <span class="input-group-text md-addon">gram</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label class="col-xl-3 col-sm-5 col-form-label font-small">Kích thước:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="row">
+                          <div class="md-form input-group mt-0 col">
+                            <input (change)="calculateFee($event)" type="number" value="0" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="0" name="long" ngModel>
+                            <div class="input-group-prepend">
+                              <span class="input-group-text md-addon">dài</span>
+                            </div>
+                          </div>
+                          <div class="md-form input-group mt-0 col">
+                            <input (change)="calculateFee($event)" type="number" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="0" name="width" ngModel>
+                            <div class="input-group-prepend">
+                              <span class="input-group-text md-addon">rộng</span>
+                            </div>
+                          </div>
+                          <div class="md-form input-group mt-0 col">
+                            <input (change)="calculateFee($event)" type="number" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="0" name="height" ngModel>
+                            <div class="input-group-prepend">
+                              <span class="input-group-text md-addon">cao</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="txtValue" class="col-xl-3 col-sm-5 col-form-label font-small">Giá trị:</label>
+                      <div class="col-xl-6 col-sm-6">
+                        <div class="md-form input-group mt-0">
+                          <input type="number" id="txtValue" class="form-control font-small pl-0 pt-1 rounded-0" name="txtValue" ngModel>
+                          <div class="input-group-prepend">
+                            <span class="input-group-text md-addon">VND</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="deliveryService" class="col-xl-3 col-sm-5 col-form-label font-small">Dịch vụ giao hàng</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <select2 [data]="delivery2Data" (valueChanged)="changeDelivery($event)"></select2>
+                          <input (change)="calculateFee($event)" type="hidden" class="form-control" id="deliveryService" name="deliveryService" [ngModel]="selectedDelivery">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="txtNote" class="col-xl-3 col-sm-5 col-form-label font-small">Ghi chú:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <textarea id="txtNote" class="md-textarea form-control font-small mt-1 p-0" rows="3" name="txtNote" ngModel></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-parcels badge-success mt-3 p-2 mb-2 font-small-3">Gói cước</div>
+                    <div class="form-group row mb-1">
+                      <label for="txtCOD" class="col-xl-3 col-sm-5 col-form-label font-small">Tiền thu hộ (COD):</label>
+                      <div class="col-xl-6 col-sm-6">
+                        <div class="md-form input-group mt-0">
+                          <input (change)="calculateFee($event)" type="number" id="txtCOD" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="" name="txtCOD" ngModel>
+                          <div class="input-group-prepend">
+                            <span class="input-group-text md-addon">VND</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label  class="col-xl-3 col-sm-5 col-form-label font-small">Người thanh toán:</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form input-group mt-0">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feePayer" id="fee_payer1" value="0" ngModel>
+                            <label class="form-check-label font-small" for="fee_payer1" >
+                              Người gửi
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="feePayer" id="fee_payer2" value="1" checked ngModel>
+                            <label class="form-check-label font-small" for="fee_payer2">
+                              Người nhận
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-1">
+                      <label for="txtCoupon" class="col-xl-3 col-sm-5 col-form-label font-small">Mã khuyến mãi:</label>
+                      <div class="col-xl-6 col-sm-6">
+                        <div class="md-form input-group mt-0">
+                          <input (change)="calculateFee($event)" type="text" id="txtCoupon" class="form-control font-small pl-0 pt-1 rounded-0" placeholder="" name="txtCoupon" ngModel>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="border-top border-light mt-2 mb-3 w-100"></div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="border border-light p-3">
+                    <div class="badge badge-default mt-3 p-2 mb-2 font-small-3">Cước phí</div>
+                    <div class="form-group row mb-1">
+                      <label for="nameSend" class="col-xl-3 col-sm-5 col-form-label font-small">Tổng</label>
+                      <div class="col-xl-9 col-sm-7">
+                        <div class="md-form mt-0">
+                          <h3 class="text-right amber-text">{{ feeMoney }} VND</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="submit" class="btn btn-raised btn-primary" [disabled]="!f.valid"><i class="fa fa-check-square-o"></i> Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
